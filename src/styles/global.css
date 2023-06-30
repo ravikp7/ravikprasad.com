@@ -3,65 +3,145 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
-body {
-	font-family: Verdana, sans-serif;
-	margin: auto;
-	padding: 20px;
-	max-width: 65ch;
-	text-align: left;
-	background-color: #fff;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	line-height: 1.5;
-	color: #444;
+* {
+  transition-property: background-color;
+  transition-duration: 0.4s;
 }
+
+body {
+  font-family: 'Encode Sans Variable', sans-serif;
+  margin: auto !important;
+  padding: 20px;
+  max-width: 1080px;
+  text-align: left;
+  background-color: #fff;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  color: #444;
+}
+textarea {
+  width: 100%;
+  font-size: 16px;
+}
+input {
+  font-size: 16px;
+}
+content {
+  line-height: 1.6;
+}
+table {
+  width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+code {
+  padding: 2px 5px;
+  @apply bg-codeBg dark:bg-codeBgDark;
+}
+pre {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0 !important;
+}
+pre > code {
+  all: unset;
+}
+blockquote {
+  border-left: 0.3rem solid;
+  color: inherit;
+  padding-left: 1rem;
+  opacity: 0.8;
+  margin: 1rem !important;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+.color-primary {
+  @apply !text-primary dark:!text-primaryDark;
+}
+
+:not(pre) > code[class*='language-'] {
+  font-size: 0.9em;
+  border-radius: 0.3em;
+  padding: 0.1em 0.3em;
+}
+
+p > a {
+  @apply color-primary !underline;
+}
+
+p,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-strong,
-b {
-	color: #222;
+h7 {
+  @apply !mb-2;
 }
-a {
-	color: #3273dc;
+
+h1 {
+  @apply !text-4xl !font-bold;
 }
-nav a {
-	margin-right: 10px;
+
+h2 {
+  @apply !text-3xl !font-bold;
 }
-textarea {
-	width: 100%;
-	font-size: 16px;
+
+h3 {
+  @apply !text-2xl !font-bold;
 }
-input {
-	font-size: 16px;
+
+h4 {
+  @apply !text-xl !font-bold;
 }
-content {
-	line-height: 1.6;
+
+h5 {
+  @apply !text-lg !font-bold;
 }
-table {
-	width: 100%;
+
+h6 {
+  @apply !text-sm !font-bold;
 }
-img {
-	max-width: 100%;
-	height: auto;
+
+h7 {
+  @apply !text-xs !font-bold;
 }
-code {
-	padding: 2px 5px;
-	background-color: #f2f2f2;
+
+.list-number {
+  list-style: decimal !important;
+  margin-left: 1.5rem !important;
+  padding: 0.5rem !important;
 }
-pre {
-	padding: 1rem;
+
+html.dark > * {
+  color: white;
 }
-pre > code {
-	all: unset;
+
+html.dark svg,
+html.dark g {
+  @apply fill-primaryDark stroke-primaryDark hover:scale-105 transition-all;
 }
-blockquote {
-	border: 1px solid #999;
-	color: #222;
-	padding: 2px 0px 2px 20px;
-	margin: 0px;
-	font-style: italic;
+
+html.dark code[class*='language-'],
+html.dark pre[class*='language-'] {
+  @apply bg-codeBgDark text-white;
+  text-shadow: none;
+}
+
+html.dark .language-css .token.string,
+html.dark .style .token.string,
+html.dark .token.entity,
+html.dark .token.operator,
+html.dark .token.url {
+  background: none;
+}
+
+.theme-toggle {
+  @apply shadow-primary dark:shadow-primaryDark bg-white dark:bg-bgDark hover:scale-105 transition-all;
 }

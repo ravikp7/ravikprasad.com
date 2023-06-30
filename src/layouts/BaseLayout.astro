@@ -1,0 +1,55 @@
+---
+import '@fontsource-variable/encode-sans'
+import BaseHead from '../components/BaseHead.astro'
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+type Props = {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image,
+} = Astro.props
+---
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/prism.css" />
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+  <body class="bg-white dark:bg-bgDark">
+    <Header title={SITE_TITLE} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          return localStorage.getItem('theme')
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          console.log('dark')
+          return 'dark'
+        } else {
+          return 'light'
+        }
+      })()
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark')
+      } else {
+        document.documentElement.classList.add('dark')
+      }
+      window.localStorage.setItem('theme', theme)
+    </script>
+  </body>
+</html>

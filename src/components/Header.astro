@@ -1,25 +1,28 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro'
+import { SITE_TITLE } from '../consts'
+import ThemeToggle from './ThemeToggle'
 ---
 
-<header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+<header class="flex justify-between">
+  <a
+    href="/"
+    class="font-bold color-primary text-2xl drop-shadow-primary dark:drop-shadow-primaryDark"
+  >
+    {SITE_TITLE}
+  </a>
+  <nav class="gap-4 hidden md:hidden">
+    <HeaderLink href="/">Work</HeaderLink>
+    <HeaderLink href="/blog">Blog</HeaderLink>
+    <HeaderLink href="/about">About</HeaderLink>
+  </nav>
+  <ThemeToggle client:only="preact" />
 </header>
 <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
+  header {
+    margin: 0em 0 2em;
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
 </style>

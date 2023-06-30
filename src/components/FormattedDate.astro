@@ -1,17 +1,20 @@
 ---
 export interface Props {
-	date: Date;
+  date: Date
+  timeToRead: number
 }
 
-const { date } = Astro.props;
+const { date, timeToRead } = Astro.props
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+<time class="font-bold text-sm" datetime={date.toISOString()}>
+  {
+    date.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
+  }
+  -
+  {timeToRead} min read
 </time>

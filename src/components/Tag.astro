@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content'
+type Props = {
+  value: CollectionEntry<'blog'>['data']['tags'][number]
+}
+
+function color(value: Props['value']): string {
+  switch (value) {
+    case 'React':
+      return '#FF5B96'
+    case 'JavaScript':
+      return '#62AF00'
+    case 'TypeScript':
+      return '#62AF00'
+    case 'Web Dev':
+      return '#0052F1'
+  }
+}
+
+const { value } = Astro.props
+---
+
+<div
+  class="px-1 py-[1px] text-[8px] border-solid border-[1px]"
+  style={{
+    borderColor: color(value),
+    backgroundColor: `${color(value)}1F`,
+    color: color(value),
+    boxShadow: `0px 2px 4px 0px ${color(value)}`,
+  }}
+>
+  {value}
+</div>

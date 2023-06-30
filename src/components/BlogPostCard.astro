@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Tag from './Tag.astro'
+
+type Props = {
+  post: CollectionEntry<'blog'>
+}
+
+const {
+  slug,
+  data: { title, tags, description, heroImage },
+} = Astro.props.post
+---
+
+<a
+  class="w-80 h-64 flex flex-col rounded-md shadow-lg overflow-hidden hover:scale-[101%] transition-all"
+  href={`blog/${slug}`}
+>
+  <div class="h-40 w-full">
+    <img class="h-full w-full object-cover" src={heroImage} alt={title} />
+  </div>
+
+  <div class="w-full flex-grow flex flex-col py-2 px-4 gap-[2px]">
+    <div class="font-semibold text-sm">{title}</div>
+    <div class="text-xs">{description}</div>
+    <div class="flex w-full gap-2 mt-1">
+      {tags.map((tag) => <Tag value={tag} />)}
+    </div>
+  </div>
+</a>
