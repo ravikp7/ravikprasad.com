@@ -17,6 +17,7 @@ export default function ThemeToggle() {
     <div
       style={{
         position: 'relative',
+        right: '2rem',
       }}
     >
       <span style={{ position: 'fixed' }}>
